@@ -1,0 +1,44 @@
+
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: openshift-python 
+    type: application
+  name: openshift-python
+  namespace: sandbox-modolo
+spec:
+  replicas: 1
+  selector:
+    app: openshift-python
+    deploymentconfig: openshift-python
+  strategy:
+    activeDeadlineSeconds: 21600
+    recreateParams:
+      timeoutSeconds: 600    
+    resources: {}
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: openshift-python
+        deploymentconfig: openshift-python
+    spec:
+      containers:
+      - image: 172.30.186.243:5000/sandbox-modolo/openshift-python
+        imagePullPolicy: Always
+        name: openshift-python
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange

@@ -3,7 +3,7 @@ kind: BuildConfig
 metadata:
   labels:
     app: openshift-python
-  name: troubleshot
+  name: openshift-python
   namespace: sandbox-modolo
 spec:
   failedBuildsHistoryLimit: 2

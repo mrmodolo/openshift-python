@@ -1,0 +1,18 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: openshift-python
+    route: external
+  name: openshift-python
+spec:
+  host: openshift-python.2d1f.gsat-corp.openshiftapps.com
+  port:
+    targetPort: flask
+  tls:
+    termination: edge
+  to:
+    kind: Service
+    name: openshift-python
+    weight: 100
+  wildcardPolicy: None
