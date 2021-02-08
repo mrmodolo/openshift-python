@@ -8,9 +8,11 @@ poetry run python app/app.py
 
 ## Testando no container
 
-podman build -f Dockerfile -t openshift-python:latest
+podman build -f Dockerfile -t docker.io/modolo/openshift-python:latest
 
-podman run --rm -p 5000:5000 openshift-python
+podman push docker.io/modolo/openshift-python:latest
+
+podman run --rm -p 5000:5000 docker.io/modolo/openshift-python:latest
 
 ## OpenShift
 
